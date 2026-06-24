@@ -22,3 +22,57 @@
             background-color: #ff9ebb;
             text-align: center;
         }
+        .btn-volver { display: inline-block; margin-bottom: 20px; color: #b76bff; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="btn-volver">← Volver al Inicio</a>
+    
+    <div class="header">
+        <h2>Mis Materias (Flexbox + JS)</h2>
+        <button id="btn-filtrar">Mostrar solo materias Técnicas</button>
+        <button id="btn-restaurar">Mostrar Todas</button>
+    </div>
+
+    <main id="contenedor-tarjetas"></main>
+
+    <script>
+        const materias = [
+            { id: 1, nombre: 'Programación III', tipo: 'Técnica' },
+            { id: 2, nombre: 'Inglés II', tipo: 'Idioma' },
+            { id: 3, nombre: 'Base de Datos II', tipo: 'Técnica' },
+            { id: 4, nombre: 'Metodología de Sist. I', tipo: 'Teórica' },
+            { id: 5, nombre: 'Algoritmos y Estructuras', tipo: 'Técnica' },
+            { id: 6, nombre: 'Arquitectura de Computadoras', tipo: 'Teórica' }
+        ];
+
+        const contenedor = document.getElementById('contenedor-tarjetas');
+
+        function renderizarTarjetas(datos) {
+            contenedor.innerHTML = '';
+            datos.forEach(materia => {
+                const div = document.createElement('div');
+                div.className = 'tarjeta';
+                div.innerHTML = `
+                    <h3>${materia.nombre}</h3>
+                    <p>Tipo: <strong>${materia.tipo}</strong></p>
+                `;
+                contenedor.appendChild(div);
+            });
+        }
+
+        // Eventos
+        document.getElementById('btn-filtrar').addEventListener('click', () => {
+            const tecnicas = materias.filter(m => m.tipo === 'Técnica');
+            renderizarTarjetas(tecnicas);
+        });
+
+        document.getElementById('btn-restaurar').addEventListener('click', () => {
+            renderizarTarjetas(materias);
+        });
+
+        // Carga inicial
+        renderizarTarjetas(materias);
+    </script>
+</body>
+</html>
