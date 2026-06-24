@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - JS Vainilla</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ff6994; padding: 10px; text-align: center; }
+        th { background-color: #ff9ebb; }
+        .formulario { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .btn-volver { display: inline-block; margin-bottom: 20px; color: #b76bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="btn-volver">← Volver al Inicio</a>
+    <h2>Carga de Personas (JavaScript Puro)</h2>
+
+    <form id="form-personas" class="formulario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="text" id="apellido" placeholder="Apellido" required>
+        <input type="number" id="edad" placeholder="Edad" required min="1">
+        <input type="number" id="altura" placeholder="Altura (ej: 1.75)" step="0.01" required>
+        <input type="number" id="peso" placeholder="Peso (kg)" required step="0.1">
+        <button type="submit">Agregar Persona</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Altura (m)</th>
+                <th>Peso (kg)</th>
+                <th>IMC</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpo-tabla">
+            </tbody>
+    </table>
+</body>
+</html>
