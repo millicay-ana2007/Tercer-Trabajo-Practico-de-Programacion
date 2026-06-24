@@ -29,11 +29,28 @@
             const [altura, setAltura] = React.useState('');
             const [peso, setPeso] = React.useState('');
 
+            const [listaPersonas, setListaPersonas] = React.useState([]);
+
             const manejarSubmit = (e) => {
                 e.preventDefault();
-                console.log({ nombre, apellido, edad, altura, peso });
+                
+                const nuevaPersona = {
+                    id: Date.now(),
+                    nombre,
+                    apellido,
+                    edad,
+                    altura: parseFloat(altura),
+                    peso: parseFloat(peso)
+                };
+
+                setListaPersonas([...listaPersonas, nuevaPersona]);
                 
                 setNombre(''); setApellido(''); setEdad(''); setAltura(''); setPeso('');
+            };
+
+            const eliminarPersona = (id) => {
+                const listaFiltrada = listaPersonas.filter(persona => persona.id !== id);
+                setListaPersonas(listaFiltrada);
             };
 
             return (
@@ -62,6 +79,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {listaPersonas.map((persona) => {
+                                const imc = (persona.peso / (persona.altura * persona.altura)).toFixed(2);
+                                
+                                return (
+                                    <tr key={persona.id} style={{ textAlign: 'center' }}>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>{persona.nombre}</td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>{persona.apellido}</td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>{persona.edad}</td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>{persona.altura}</td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>{persona.peso}</td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}><strong>{imc}</strong></td>
+                                        <td style={{ border: '1px solid #ff6994', padding: '10px' }}>
+                                            <button onClick={() => eliminarPersona(persona.id)}>Eliminar</button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
