@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - React CDN</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .btn-volver { display: inline-block; margin-bottom: 20px; color: #b76bff; text-decoration: none; }
+    </style>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <a href="index.html" class="btn-volver">← Volver al Inicio</a>
+    
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            return (
+                <div>
+                    <h2>Carga de Personas (React)</h2>
+                    <p>¡Entorno de React configurado correctamente de forma declarativa!</p>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
