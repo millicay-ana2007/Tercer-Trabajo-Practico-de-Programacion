@@ -40,5 +40,48 @@
         <tbody id="cuerpo-tabla">
             </tbody>
     </table>
+
+    <script>
+        const form = document.getElementById('form-personas');
+        const cuerpoTabla = document.getElementById('cuerpo-tabla');
+        
+        let personas = [];
+
+        function renderizarTabla() {
+            cuerpoTabla.innerHTML = '';
+            
+            personas.forEach((persona, index) => {
+                const imc = (persona.peso / (persona.altura * persona.altura)).toFixed(2);
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${persona.nombre}</td>
+                    <td>${persona.apellido}</td>
+                    <td>${persona.edad}</td>
+                    <td>${persona.altura}</td>
+                    <td>${persona.peso}</td>
+                    <td><strong>${imc}</strong></td>
+                    <td><button>Eliminar</button></td> 
+                `;
+                cuerpoTabla.appendChild(tr);
+            });
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const nuevaPersona = {
+                nombre: document.getElementById('nombre').value,
+                apellido: document.getElementById('apellido').value,
+                edad: document.getElementById('edad').value,
+                altura: parseFloat(document.getElementById('altura').value),
+                peso: parseFloat(document.getElementById('peso').value)
+            };
+            
+            personas.push(nuevaPersona); 
+            renderizarTabla();          
+            form.reset();               
+        });
+    </script>
 </body>
 </html>
