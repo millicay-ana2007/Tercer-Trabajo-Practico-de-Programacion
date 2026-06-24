@@ -48,7 +48,7 @@
         let personas = [];
 
         function renderizarTabla() {
-            cuerpoTabla.innerHTML = '';
+            cuerpoTabla.innerHTML = ''; 
             
             personas.forEach((persona, index) => {
                 const imc = (persona.peso / (persona.altura * persona.altura)).toFixed(2);
@@ -61,14 +61,27 @@
                     <td>${persona.altura}</td>
                     <td>${persona.peso}</td>
                     <td><strong>${imc}</strong></td>
-                    <td><button>Eliminar</button></td> 
+                    <td><button class="btn-eliminar" data-index="${index}">Eliminar</button></td> 
                 `;
                 cuerpoTabla.appendChild(tr);
             });
+
+            const botonesEliminar = document.querySelectorAll('.btn-eliminar');
+            botonesEliminar.forEach(boton => {
+                boton.addEventListener('click', (e) => {
+                    const idx = e.target.getAttribute('data-index');
+                    eliminarPersona(idx);
+                });
+            });
+        }
+
+        function eliminarPersona(index) {
+            personas.splice(index, 1); 
+            renderizarTabla();         
         }
 
         form.addEventListener('submit', (e) => {
-            e.preventDefault();
+            e.preventDefault(); 
             
             const nuevaPersona = {
                 nombre: document.getElementById('nombre').value,
