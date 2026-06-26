@@ -61,7 +61,6 @@
             });
         }
 
-        // Eventos
         document.getElementById('btn-filtrar').addEventListener('click', () => {
             const tecnicas = materias.filter(m => m.tipo === 'Técnica');
             renderizarTarjetas(tecnicas);
@@ -71,7 +70,6 @@
             renderizarTarjetas(materias);
         });
 
-        // Carga inicial
         renderizarTarjetas(materias);
     </script>
 </body>
